@@ -1,0 +1,29 @@
+{
+  "name": "lincs-project",
+  "version": "1.0.0",
+  "description": "Data vitualization and download",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "lincs"
+  ],
+  "author": "Aliyu Musa",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.1.5",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.16.1",
+    "cors": "^2.8.1",
+    "express": "^4.14.1",
+    "jsonwebtoken": "^7.3.0",
+    "mongoose": "^4.8.3",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.2.1",
+    "pug": "^2.0.0-beta11"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}

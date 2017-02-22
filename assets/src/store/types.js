@@ -1,0 +1,8 @@
+export const LOADING_BEGIN = 'LOADING_BEGIN'
+export const LOADING_END = 'LOADING_END'
+export const SET_TAGS = 'SET_TAGS'
+export const SET_MODEL = 'SET_MODEL'
+export const PROCESS_BEGIN = 'PROCESS_BEGIN'
+export const PROCESS_END = 'PROCESS_END'
+export const REDIRECT = 'REDIRECT'
+export const CLEAN_UP = 'CLEAN_UP'
