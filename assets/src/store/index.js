@@ -7,7 +7,9 @@ Vue.use(Vuex)
 
 const state = {
   model: {},
-  tags: []
+  tags: [],
+  loading: false,
+  processing: false
 }
 
 const actions = {
@@ -23,7 +25,6 @@ const actions = {
   },
   searchData ({commit, state}, payload) {
     commit(types.LOADING_BEGIN)
-    commit(types.CLEAN_UP)
     search(payload, function (data) {
       commit(types.SET_MODEL, data)
       commit(types.LOADING_END)
@@ -39,6 +40,9 @@ const getters = {
   },
   model (state) {
     return state.model
+  },
+  loading (state) {
+    return state.loading
   }
 }
 

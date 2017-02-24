@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const Metadata = require('../models/metadata');
+const Matrix = require('../models/matrix')
+const Metadata = require('../models/metadata')
 const async = require('async')
 
 router.use(function(req, res, next) {
@@ -14,7 +15,7 @@ router.get('/tags', (req, res, next) => {
   queries.push(function (cb) {
     Metadata.distinct('CL_Name', (err, docs) => {
         if (err) {
-            throw cb(err)
+          throw cb(err)
         }
         cb(null, docs)
     });
@@ -23,7 +24,7 @@ router.get('/tags', (req, res, next) => {
   queries.push(function (cb) {
     Metadata.distinct('SM_Name', (err, docs) => {
         if (err) {
-            throw cb(err)
+          throw cb(err)
         }
         cb(null, docs)
     });
@@ -52,22 +53,45 @@ router.get('/tags', (req, res, next) => {
 router.post('/search', (req, res, next) => {
 
   let data = req.body
+
   let fields = []
-  data.forEach( (d, i) => {
+  data.values.forEach( (d, i) => {
     let values = {}
     values[d.name] = d.tag
     fields.push(values)
   })
 
-  Metadata.find({$or:fields}, { _id: 1, det_plate: 1, SM_Name: 1} , (err, model) => {
+  let options = {
+    page: data.page,
+    limit: data.limit
+  }
+
+  Metadata.paginate({$or:fields}, options , (err, model) => {
+    if (err)
+      throw err
 
     let data = {
       model
     }
+    res.json(data)
+  })
+
+
+})
+
+
+// Download
+
+router.post('/download', (req, res, next) => {
+
+  let data = req.body
+
+  Matrix.find({
+    id: { $in: data } },
+    {id: 1, vector: 1}, (err, data) => {
 
     res.json(data)
-  }).limit(50)
-
+  })
 
 })
 

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const mongoosePaginate = require('mongoose-paginate')
 const config = require('../config/database')
 
 const Schema = mongoose.Schema;
@@ -18,5 +19,6 @@ const metadataSchema = new Schema({
     "CL_Name" : String
 });
 
+metadataSchema.plugin(mongoosePaginate)
 
-module.exports = mongoose.model('Metadata', metadataSchema, 'metadata');
+module.exports = mongoose.model('Metadata', metadataSchema, 'metadata')
